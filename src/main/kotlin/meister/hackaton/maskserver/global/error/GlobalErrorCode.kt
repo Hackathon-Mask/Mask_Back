@@ -8,6 +8,8 @@ enum class GlobalErrorCode(
     private val message: String
 ) : ErrorProperty {
 
+    FILE_IO_INTERRUPTED(HttpStatus.BAD_REQUEST, "파일 입출력 오류"),
+
     BAD_REQUEST(HttpStatus.BAD_REQUEST, "잘못된 입력값"),
     METHOD_NOT_ALLOWED(HttpStatus.METHOD_NOT_ALLOWED, "허용되지 않은 HTTP 메소드"),
 
