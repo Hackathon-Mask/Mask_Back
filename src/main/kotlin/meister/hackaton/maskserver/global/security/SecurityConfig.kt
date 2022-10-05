@@ -5,6 +5,7 @@ import meister.hackaton.maskserver.global.filter.FilterConfig
 import meister.hackaton.maskserver.global.security.token.JwtParser
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -37,7 +38,7 @@ class SecurityConfig(
             .antMatchers("/api-docs").permitAll()
 
             // users
-            .antMatchers("/users").permitAll()
+            .antMatchers(HttpMethod.POST, "/users").permitAll()
 
             .anyRequest().authenticated()
 
