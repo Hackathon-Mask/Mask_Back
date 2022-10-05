@@ -21,12 +21,12 @@ class SignInService(
     fun execute(request: SignInRequest): TokenResponse {
         val user = userRepository.findUserByEmail(request.email) ?: throw UserNotFoundException.EXCEPTION
 
-        if (!passwordEncoder.matches(user.password, request.password)) {
+        if (!passwordEncoder.matches(request.password, user.password)) {
             throw InvalidPasswordException.EXCEPTION
         }
 
         return TokenResponse(
-            accessToken = tokenProvider.generateAccessToken(user.id!!, user.type)
+            accessToken = tokenProvider.generateAccessToken(user.id, user.type)
         )
     }
 

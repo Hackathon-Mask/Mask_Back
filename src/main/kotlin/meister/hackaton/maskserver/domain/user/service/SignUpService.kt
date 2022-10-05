@@ -31,7 +31,6 @@ class SignUpService(
             ?: throw TagNotFoundException.EXCEPTION
 
         val user = User(
-            id = null,
             majorTag = tag,
             name = request.name,
             email = request.email,
@@ -51,7 +50,7 @@ class SignUpService(
 
             val mySkill = MySkill(
                 MySkillId(
-                    userId = user.id!!,
+                    userId = user.id,
                     skillTagId = skillId
                 ),
                 user,
