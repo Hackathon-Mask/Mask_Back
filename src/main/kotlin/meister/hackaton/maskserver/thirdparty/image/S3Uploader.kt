@@ -44,7 +44,7 @@ class S3Uploader(
     }
 
     private fun getResource(fileName: String): String {
-        return amazonS3Client.getResourceUrl(awsProperties.bucket, fileName)
+        return awsProperties.url + fileName
     }
 
 }

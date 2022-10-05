@@ -37,6 +37,7 @@ cloud:
       auto: false
     s3:
       bucket: ${BUCKET_NAME}
+      url: ${BUCKET_URL}
 
 springdoc:
   swagger-ui:
