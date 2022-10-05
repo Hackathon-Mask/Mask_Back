@@ -8,6 +8,8 @@ enum class UserErrorCode(
     private val message: String
 ) : ErrorProperty {
 
+    INVALID_PASSWORD(HttpStatus.BAD_REQUEST, "일치하지 않는 비밀번호"),
+
     USER_ALREADY_EXISTS(HttpStatus.CONFLICT, "유저가 이미 존재함"),
 
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "유저를 찾을 수 없음");
