@@ -31,6 +31,14 @@ class SecurityConfig(
         http
             .authorizeRequests()
 
+            // swagger
+            .antMatchers("/swagger-ui/**").permitAll()
+            .antMatchers("/v3/api-docs/**").permitAll()
+            .antMatchers("/api-docs").permitAll()
+
+            // users
+            .antMatchers("/users").permitAll()
+
             .anyRequest().authenticated()
 
         http

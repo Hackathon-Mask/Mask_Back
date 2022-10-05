@@ -25,6 +25,10 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
 
+springdoc:
+  swagger-ui:
+    path: /api-docs
+
 security:
   secret-key: ${SECRET_KEY:asdfasfdasfadsf}
   access-exp: ${ACCESS_EXP:180}
