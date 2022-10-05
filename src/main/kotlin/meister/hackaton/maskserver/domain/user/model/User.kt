@@ -1,13 +1,17 @@
 package meister.hackaton.maskserver.domain.user.model
 
+import meister.hackaton.maskserver.domain.tag.model.Tag
 import org.hibernate.validator.constraints.Length
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
@@ -19,40 +23,44 @@ class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
-    @NotNull
-    @Length(max = 20)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "major_tag_id", nullable = false)
+    val majorTag: Tag,
+
+    @field:NotNull
+    @field:Length(max = 20)
     @Column(name = "name")
     val name: String,
 
-    @NotNull
+    @field:NotNull
     @Column(name = "email", unique = true)
     val email: String,
 
-    @NotNull
+    @field:NotNull
     @Column(name = "password", columnDefinition = "CHAR(60)")
     val password: String,
 
-    @NotNull
-    @Length(max = 20)
-    @Column(name = "school")
+    @field:NotNull
+    @Column(name = "school", length = 20)
     @Enumerated(EnumType.STRING)
     val school: School,
 
-    @NotNull
-    @Length(max = 8)
-    @Column(name = "type")
+    @field:NotNull
+    @Column(name = "type", length = 8)
     @Enumerated(EnumType.STRING)
     val type: UserType,
 
-    @NotNull
+    @field:NotNull
     @Column(name = "generation")
     val generation: Int,
 
-    @NotNull
+    @field:NotNull
+    @field:Length(max = 20)
     @Column(name = "company")
     val company: String,
 
-    @NotNull
+    @field:NotNull
+    @field:Length(max = 20)
     @Column(name = "club")
     val club: String
 )
