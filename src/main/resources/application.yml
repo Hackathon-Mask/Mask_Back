@@ -25,6 +25,19 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
 
+cloud:
+  aws:
+    credentials:
+      access-key: ${AWS_ACCESS}
+      secret-key: ${AWS_SECRET}
+    region:
+      static: ${AWS_REGION:ap-northeast-2}
+      auto: false
+    stack:
+      auto: false
+    s3:
+      bucket: ${BUCKET_NAME}
+
 springdoc:
   swagger-ui:
     path: /api-docs
