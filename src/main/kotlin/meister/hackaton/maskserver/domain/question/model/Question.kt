@@ -21,7 +21,7 @@ class Question(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long = 0,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -40,6 +40,14 @@ class Question(
     @field:Length(max = 10000)
     @Column(name = "content")
     val content: String,
+
+    @field:NotNull
+    @Column(name = "summary")
+    val summary: String,
+
+    @field:NotNull
+    @Column(name = "title_image")
+    val titleImage: String,
 
     @field:NotNull
     @Column(name = "curiousity_count")
