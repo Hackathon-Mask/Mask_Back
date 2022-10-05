@@ -13,7 +13,7 @@ class JwtProvider(
     private val securityProperties: SecurityProperties,
 ) {
 
-    fun generateAccessToken(userId: UUID, authority: UserType) =
+    fun generateAccessToken(userId: Long, authority: UserType): String =
         Jwts.builder()
             .signWith(SignatureAlgorithm.HS512, securityProperties.encodingSecretKey)
             .setHeaderParam(Header.JWT_TYPE, JwtComponent.ACCESS)
