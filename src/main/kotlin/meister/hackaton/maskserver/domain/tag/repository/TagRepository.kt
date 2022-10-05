@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface TagRepository : CrudRepository<Tag, Long> {
+
+    fun findTagById(id: Long): Tag?
+
 }
