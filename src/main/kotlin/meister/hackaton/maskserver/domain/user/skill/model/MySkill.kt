@@ -1,6 +1,5 @@
 package meister.hackaton.maskserver.domain.user.skill.model
 
-import meister.hackaton.maskserver.domain.question.skill.model.QuestionSkillId
 import meister.hackaton.maskserver.domain.tag.model.Tag
 import meister.hackaton.maskserver.domain.user.model.User
 import javax.persistence.EmbeddedId
@@ -16,7 +15,7 @@ import javax.persistence.Table
 class MySkill(
 
     @EmbeddedId
-    val id: QuestionSkillId,
+    val id: MySkillId,
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY)
