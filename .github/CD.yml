@@ -25,6 +25,7 @@ jobs:
           arguments: |
             build
             --no-daemon
+
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
