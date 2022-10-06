@@ -13,6 +13,7 @@ data class QuestionDetailsResponse(
     val majorTag: TagResponse.TagElement,
     val skills: List<TagResponse.TagElement>,
     val curiousityCount: Int,
+    val answerCount: Int,
     val createdAt: LocalDate,
     val writer: QuestionWriter,
     val answers: List<Answer>

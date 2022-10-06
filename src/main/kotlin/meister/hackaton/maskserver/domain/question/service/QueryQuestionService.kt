@@ -67,6 +67,7 @@ class QueryQuestionService(
             ),
             skills = skills,
             curiousityCount = question.curiousityCount,
+            answerCount = question.answerCount,
             createdAt = question.createdAt.toLocalDate(),
             writer = QuestionDetailsResponse.QuestionWriter(
                 id = question.user.id,
