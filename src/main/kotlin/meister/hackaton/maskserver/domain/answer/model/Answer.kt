@@ -1,6 +1,7 @@
 package meister.hackaton.maskserver.domain.answer.model
 
 import meister.hackaton.maskserver.domain.question.model.Question
+import meister.hackaton.maskserver.domain.user.model.User
 import meister.hackaton.maskserver.global.entity.BaseTimeEntity
 import org.hibernate.validator.constraints.Length
 import javax.persistence.Column
@@ -25,6 +26,10 @@ class Answer(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", nullable = false)
     val question: Question,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    val user: User,
 
     @field:NotNull
     @field:Length(max = 10000)
