@@ -14,6 +14,7 @@ import meister.hackaton.maskserver.domain.user.service.QueryUserProfileService
 import meister.hackaton.maskserver.domain.user.service.SearchUserService
 import meister.hackaton.maskserver.domain.user.service.SignInService
 import meister.hackaton.maskserver.domain.user.service.SignUpService
+import meister.hackaton.maskserver.global.util.SecurityUtil
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -33,7 +34,8 @@ class UserController(
     private val signInService: SignInService,
     private val queryMyMajorTagService: QueryMyMajorTagService,
     private val searchUserService: SearchUserService,
-    private val queryUserProfileService: QueryUserProfileService
+    private val queryUserProfileService: QueryUserProfileService,
+    private val securityUtil: SecurityUtil
 ) {
 
     @Operation(summary = "회원가입")
@@ -70,6 +72,12 @@ class UserController(
         @PathVariable("user-id") userId: Long
     ): UserProfileResponse {
         return queryUserProfileService.execute(userId)
+    }
+
+    @Operation(summary = "유저 마이페이지 조회")
+    @GetMapping("/me")
+    fun getMyProfile(): UserProfileResponse {
+        return queryUserProfileService.execute(securityUtil.getCurrentUserId())
     }
 
 }
