@@ -3,6 +3,7 @@ package meister.hackaton.maskserver.domain.answer.presentation
 import io.swagger.v3.oas.annotations.tags.Tag
 import meister.hackaton.maskserver.domain.answer.presentation.dto.CreateAnswerRequest
 import meister.hackaton.maskserver.domain.answer.service.CreateAnswerService
+import meister.hackaton.maskserver.domain.question.presentation.dto.QuestionDetailsResponse
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -24,8 +25,8 @@ class AnswerController(
     fun createAnswer(
         @PathVariable("question-id") questionId: Long,
         @RequestBody @Valid request: CreateAnswerRequest
-    ) {
-        answerService.execute(questionId, request)
+    ): QuestionDetailsResponse.Answer {
+        return answerService.execute(questionId, request)
     }
 
 }
