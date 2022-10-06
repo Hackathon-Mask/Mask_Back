@@ -7,6 +7,7 @@ import meister.hackaton.maskserver.domain.question.presentation.dto.CreateQuesti
 import meister.hackaton.maskserver.domain.question.presentation.dto.QuestionDetailsResponse
 import meister.hackaton.maskserver.domain.question.presentation.dto.QuestionResponse
 import meister.hackaton.maskserver.domain.question.service.CreateQuestionService
+import meister.hackaton.maskserver.domain.question.service.QueryMyQuestionsService
 import meister.hackaton.maskserver.domain.question.service.QueryQuestionService
 import meister.hackaton.maskserver.domain.question.service.QueryQuestionsService
 import org.springframework.http.HttpStatus
@@ -26,7 +27,8 @@ import javax.validation.Valid
 class QuestionController(
     private val createQuestionService: CreateQuestionService,
     private val queryQuestionsService: QueryQuestionsService,
-    private val queryQuestionService: QueryQuestionService
+    private val queryQuestionService: QueryQuestionService,
+    private val queryMyQuestionsService: QueryMyQuestionsService
 ) {
 
     @Operation(summary = "질문 생성")
@@ -52,6 +54,12 @@ class QuestionController(
         @PathVariable("question-id") questionId: Long
     ): QuestionDetailsResponse {
         return queryQuestionService.execute(questionId)
+    }
+
+    @Operation(summary = "자신이 올린 질문 목록 조회")
+    @GetMapping("/me")
+    fun getMyQuestions(): QuestionResponse {
+        return queryMyQuestionsService.execute()
     }
 
 }

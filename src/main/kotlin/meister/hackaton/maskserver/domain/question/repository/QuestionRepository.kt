@@ -9,4 +9,6 @@ interface QuestionRepository : CrudRepository<Question, Long>, QuestionRepositor
 
     fun findQuestionById(id: Long): Question?
 
+    fun findQuestionsByUserIdOrderByCreatedAtDesc(userId: Long): List<Question>
+
 }
