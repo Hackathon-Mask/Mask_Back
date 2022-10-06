@@ -16,7 +16,8 @@ data class QuestionDetailsResponse(
     val answerCount: Int,
     val createdAt: LocalDate,
     val writer: QuestionWriter,
-    val answers: List<Answer>
+    val answers: List<Answer>,
+    val isCuriousity: Boolean
 ) {
     data class QuestionWriter(
         val id: Long,

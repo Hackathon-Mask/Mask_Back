@@ -1,12 +1,14 @@
 package meister.hackaton.maskserver.domain.question.service
 
 import meister.hackaton.maskserver.domain.answer.repository.AnswerRepository
+import meister.hackaton.maskserver.domain.curiousity.repository.CuriousityRepository
 import meister.hackaton.maskserver.domain.question.exception.QuestionNotFoundException
 import meister.hackaton.maskserver.domain.question.presentation.dto.QuestionDetailsResponse
 import meister.hackaton.maskserver.domain.question.repository.QuestionRepository
 import meister.hackaton.maskserver.domain.question.skill.repository.QuestionSkillRepository
 import meister.hackaton.maskserver.domain.tag.presentation.dto.TagResponse
 import meister.hackaton.maskserver.domain.user.skill.repository.MySkillRepository
+import meister.hackaton.maskserver.global.util.SecurityUtil
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -15,7 +17,9 @@ class QueryQuestionService(
     private val questionRepository: QuestionRepository,
     private val answerRepository: AnswerRepository,
     private val mySkillRepository: MySkillRepository,
-    private val questionSkillRepository: QuestionSkillRepository
+    private val questionSkillRepository: QuestionSkillRepository,
+    private val curiousityRepository: CuriousityRepository,
+    private val securityUtil: SecurityUtil
 ) {
 
     @Transactional(readOnly = true)
@@ -73,7 +77,11 @@ class QueryQuestionService(
                 id = question.user.id,
                 name = question.user.name,
             ),
-            answers = answers
+            answers = answers,
+            isCuriousity = curiousityRepository.existsByIdQuestionIdAndIdUserId(
+                questionId,
+                securityUtil.getCurrentUserId()
+            )
         )
     }
 

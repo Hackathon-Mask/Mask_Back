@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface CuriousityRepository : CrudRepository<Curiousity, CuriousityId> {
+
+    fun existsByIdQuestionIdAndIdUserId(questionId: Long, userId: Long): Boolean
+
 }
