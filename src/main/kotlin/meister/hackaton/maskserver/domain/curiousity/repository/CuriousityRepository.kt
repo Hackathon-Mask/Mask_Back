@@ -10,4 +10,6 @@ interface CuriousityRepository : CrudRepository<Curiousity, CuriousityId> {
 
     fun existsByIdQuestionIdAndIdUserId(questionId: Long, userId: Long): Boolean
 
+    fun deleteCuriousityByIdQuestionIdAndIdUserId(questionId: Long, userId: Long)
+
 }

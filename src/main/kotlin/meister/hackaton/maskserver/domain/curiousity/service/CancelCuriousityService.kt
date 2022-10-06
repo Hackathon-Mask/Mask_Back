@@ -1,6 +1,5 @@
 package meister.hackaton.maskserver.domain.curiousity.service
 
-import meister.hackaton.maskserver.domain.curiousity.model.CuriousityId
 import meister.hackaton.maskserver.domain.curiousity.repository.CuriousityRepository
 import meister.hackaton.maskserver.domain.question.exception.QuestionNotFoundException
 import meister.hackaton.maskserver.domain.question.repository.QuestionRepository
@@ -23,9 +22,7 @@ class CancelCuriousityService(
         val user = userRepository.findUserById(securityUtil.getCurrentUserId()) ?: throw UserNotFoundException.EXCEPTION
         val question = questionRepository.findQuestionById(questionId) ?: throw QuestionNotFoundException.EXCEPTION
 
-        curiousityRepository.deleteById(
-            CuriousityId(user.id, question.id)
-        )
+        curiousityRepository.deleteCuriousityByIdQuestionIdAndIdUserId(user.id, questionId)
 
         question.minusCuriousityCount()
     }
