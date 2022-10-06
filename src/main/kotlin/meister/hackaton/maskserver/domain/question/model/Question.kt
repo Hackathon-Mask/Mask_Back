@@ -60,7 +60,7 @@ class Question(
 
     @field:NotNull
     @Column(name = "curiousity_count")
-    var curiousityCount: Int = 0,
+    var curiousityCount: Int = 0
 
     @field:NotNull
     @Column(name = "answer_count")
