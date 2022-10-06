@@ -6,6 +6,8 @@ import meister.hackaton.maskserver.global.entity.BaseTimeEntity
 import org.hibernate.validator.constraints.Length
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -48,6 +50,11 @@ class Question(
     @field:NotNull
     @Column(name = "title_image")
     val titleImage: String,
+
+    @field:NotNull
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    val status: QuestionStatus,
 
     @field:NotNull
     @Column(name = "curiousity_count")

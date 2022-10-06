@@ -1,6 +1,7 @@
 package meister.hackaton.maskserver.domain.question.service
 
 import meister.hackaton.maskserver.domain.question.model.Question
+import meister.hackaton.maskserver.domain.question.model.QuestionStatus
 import meister.hackaton.maskserver.domain.question.presentation.dto.CreateQuestionRequest
 import meister.hackaton.maskserver.domain.question.repository.QuestionRepository
 import meister.hackaton.maskserver.domain.question.skill.model.QuestionSkill
@@ -39,6 +40,7 @@ class CreateQuestionService(
             content = request.content,
             summary = request.summary,
             titleImage = request.titleImage,
+            status = QuestionStatus.CREATED
         )
 
         questionRepository.save(question)
