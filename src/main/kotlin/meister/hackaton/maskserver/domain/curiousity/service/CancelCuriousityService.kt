@@ -22,7 +22,7 @@ class CancelCuriousityService(
         val user = userRepository.findUserById(securityUtil.getCurrentUserId()) ?: throw UserNotFoundException.EXCEPTION
         val question = questionRepository.findQuestionById(questionId) ?: throw QuestionNotFoundException.EXCEPTION
 
-        curiousityRepository.deleteCuriousityByIdQuestionIdAndIdUserId(user.id, questionId)
+        curiousityRepository.deleteCuriousityByIdQuestionIdAndIdUserId(questionId, user.id)
 
         question.minusCuriousityCount()
     }
