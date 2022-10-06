@@ -70,6 +70,10 @@ class Question(
         this.curiousityCount++
     }
 
+    fun minusCuriousityCount() {
+        this.curiousityCount--
+    }
+
     fun addAnswerCount() {
         this.answerCount++
     }
