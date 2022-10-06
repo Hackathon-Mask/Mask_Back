@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface QuestionSkillRepository : CrudRepository<QuestionSkill, QuestionSkillId> {
+
+    fun findQuestionSkillsByIdQuestionId(questionId: Long): List<QuestionSkill>
+
 }

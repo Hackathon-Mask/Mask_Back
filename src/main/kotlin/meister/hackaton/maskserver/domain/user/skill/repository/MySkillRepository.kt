@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface MySkillRepository : CrudRepository<MySkill, MySkillId> {
+
+    fun findMySkillsByIdUserId(userId: Long): List<MySkill>
+
 }
