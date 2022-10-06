@@ -47,6 +47,9 @@ class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/tags/majors").permitAll()
             .antMatchers(HttpMethod.GET, "/tags/skills").permitAll()
 
+            // questions
+            .antMatchers(HttpMethod.POST, "/questions").permitAll()
+
             .anyRequest().authenticated()
 
         http
