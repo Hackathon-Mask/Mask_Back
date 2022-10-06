@@ -39,6 +39,7 @@ class SecurityConfig(
 
             // users
             .antMatchers(HttpMethod.POST, "/users").permitAll()
+            .antMatchers(HttpMethod.POST, "/users/tokens").permitAll()
 
             // images
             .antMatchers(HttpMethod.POST, "/images").permitAll()
