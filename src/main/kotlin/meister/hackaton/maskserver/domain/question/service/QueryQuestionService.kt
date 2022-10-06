@@ -58,7 +58,7 @@ class QueryQuestionService(
         return QuestionDetailsResponse(
             id = question.id,
             title = question.title,
-            content = question.summary,
+            content = question.content,
             titleImage = question.titleImage,
             status = question.status,
             majorTag = TagResponse.TagElement(
