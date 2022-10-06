@@ -1,5 +1,6 @@
 package meister.hackaton.maskserver.domain.user.repositiory
 
+import meister.hackaton.maskserver.domain.user.model.School
 import meister.hackaton.maskserver.domain.user.model.User
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
@@ -12,5 +13,7 @@ interface UserRepository : CrudRepository<User, Long> {
     fun findUserByEmail(email: String): User?
 
     fun existsByEmail(email: String): Boolean
+
+    fun findUsersByNameContainingAndSchoolOrderByName(keyword: String?, school: School): List<User>
 
 }
