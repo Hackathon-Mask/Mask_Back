@@ -32,6 +32,7 @@ class CreateAnswerService(
         )
 
         answerRepository.save(answer)
+        question.addAnswerCount()
     }
 
 }
