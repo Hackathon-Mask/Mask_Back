@@ -26,10 +26,7 @@ data class SignUpRequest(
     val generation: Int,
 
     @field:Length(max = 20)
-    val company: String,
-
-    @field:Length(max = 20)
-    val club: String,
+    val belong: String,
 
     @field:NotNull
     val majorTag: Long,

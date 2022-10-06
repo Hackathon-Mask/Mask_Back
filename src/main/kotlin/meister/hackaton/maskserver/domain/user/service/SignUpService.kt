@@ -39,8 +39,7 @@ class SignUpService(
             school = request.school,
             type = request.type,
             generation = request.generation,
-            company = request.company,
-            club = request.club
+            belong = request.belong
         )
 
         userRepository.save(user)

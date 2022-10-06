@@ -56,11 +56,6 @@ class User(
 
     @field:NotNull
     @field:Length(max = 20)
-    @Column(name = "company")
-    val company: String,
-
-    @field:NotNull
-    @field:Length(max = 20)
-    @Column(name = "club")
-    val club: String
+    @Column(name = "belong")
+    val belong: String,
 )
