@@ -16,7 +16,7 @@ class S3Uploader(
 ) : ImageUploader {
 
     override fun upload(image: MultipartFile): String {
-        val fileName = image.originalFilename
+        val fileName = image.originalFilename?.replace(" ", "")
 
         inputS3(image, fileName)
 
