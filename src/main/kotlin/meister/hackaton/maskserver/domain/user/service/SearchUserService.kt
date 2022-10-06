@@ -16,7 +16,7 @@ class SearchUserService(
 
     @Transactional(readOnly = true)
     fun execute(keyword: String?, school: School): SearchUserResponse {
-        val users = userRepository.findUsersByNameContainingAndSchoolOrderByName(keyword, school)
+        val users = userRepository.findUsersByNameContainingAndSchoolOrderByName(keyword ?: "", school)
 
         return SearchUserResponse(
             users.map {
