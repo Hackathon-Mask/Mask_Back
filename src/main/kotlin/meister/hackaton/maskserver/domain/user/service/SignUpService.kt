@@ -1,6 +1,7 @@
 package meister.hackaton.maskserver.domain.user.service
 
 import meister.hackaton.maskserver.domain.tag.exception.TagNotFoundException
+import meister.hackaton.maskserver.domain.tag.model.TagType
 import meister.hackaton.maskserver.domain.tag.repository.TagRepository
 import meister.hackaton.maskserver.domain.user.exception.AlreadyExistsException
 import meister.hackaton.maskserver.domain.user.model.User
@@ -27,7 +28,7 @@ class SignUpService(
             throw AlreadyExistsException.EXCEPTION
         }
 
-        val tag = tagRepository.findTagById(request.majorTag)
+        val tag = tagRepository.findTagByIdAndType(request.majorTag, TagType.MAJOR)
             ?: throw TagNotFoundException.EXCEPTION
 
         val user = User(
@@ -46,7 +47,7 @@ class SignUpService(
 
         val mySkills: MutableList<MySkill> = mutableListOf()
         for (skillId in request.skills) {
-            val skill = tagRepository.findTagById(skillId) ?: throw TagNotFoundException.EXCEPTION
+            val skill = tagRepository.findTagByIdAndType(skillId, TagType.SKILL) ?: throw TagNotFoundException.EXCEPTION
 
             val mySkill = MySkill(
                 MySkillId(

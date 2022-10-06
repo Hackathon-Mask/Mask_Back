@@ -7,6 +7,7 @@ import meister.hackaton.maskserver.domain.question.skill.model.QuestionSkill
 import meister.hackaton.maskserver.domain.question.skill.model.QuestionSkillId
 import meister.hackaton.maskserver.domain.question.skill.repository.QuestionSkillRepository
 import meister.hackaton.maskserver.domain.tag.exception.TagNotFoundException
+import meister.hackaton.maskserver.domain.tag.model.TagType
 import meister.hackaton.maskserver.domain.tag.repository.TagRepository
 import meister.hackaton.maskserver.domain.user.exception.UserNotFoundException
 import meister.hackaton.maskserver.domain.user.repositiory.UserRepository
@@ -28,7 +29,7 @@ class CreateQuestionService(
         val user = userRepository.findUserById(securityUtil.getCurrentUserId())
             ?: throw UserNotFoundException.EXCEPTION
 
-        val tag = tagRepository.findTagById(request.majorTag)
+        val tag = tagRepository.findTagByIdAndType(request.majorTag, TagType.MAJOR)
             ?: throw TagNotFoundException.EXCEPTION
 
         val question = Question(
@@ -44,7 +45,7 @@ class CreateQuestionService(
 
         val questionSkills: MutableList<QuestionSkill> = mutableListOf()
         for (skillId in request.skills) {
-            val skill = tagRepository.findTagById(skillId) ?: throw TagNotFoundException.EXCEPTION
+            val skill = tagRepository.findTagByIdAndType(skillId, TagType.SKILL) ?: throw TagNotFoundException.EXCEPTION
 
             val questionSkill = QuestionSkill(
                 QuestionSkillId(
