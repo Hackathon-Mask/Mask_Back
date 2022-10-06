@@ -34,6 +34,7 @@ class AddCuriousityService(
         )
 
         curiousityRepository.save(curiousity)
+
         question.addCuriousityCount()
     }
 
