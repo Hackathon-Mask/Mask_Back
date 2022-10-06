@@ -1,5 +1,6 @@
 package meister.hackaton.maskserver.domain.image.presentation
 
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import meister.hackaton.maskserver.domain.image.presentation.dto.ImageResponse
 import meister.hackaton.maskserver.domain.image.service.ImageUploadService
@@ -16,6 +17,7 @@ class ImageController(
     private val imageUploadService: ImageUploadService
 ) {
 
+    @Operation(summary = "이미지 업로드")
     @PostMapping
     fun upload(@RequestPart image: MultipartFile): ImageResponse {
         return imageUploadService.execute(image)
