@@ -54,7 +54,7 @@ class Question(
     @field:NotNull
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    val status: QuestionStatus
+    var status: QuestionStatus
 
 ) : BaseTimeEntity() {
 
@@ -74,8 +74,9 @@ class Question(
         this.curiousityCount--
     }
 
-    fun addAnswerCount() {
+    fun addAnswer() {
         this.answerCount++
+        this.status = QuestionStatus.TALKING
     }
 
 }
