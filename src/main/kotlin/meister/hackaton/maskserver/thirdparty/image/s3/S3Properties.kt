@@ -1,4 +1,4 @@
-package meister.hackaton.maskserver.thirdparty.image
+package meister.hackaton.maskserver.thirdparty.image.s3
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding

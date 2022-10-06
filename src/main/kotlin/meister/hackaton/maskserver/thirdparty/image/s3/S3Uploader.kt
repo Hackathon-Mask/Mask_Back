@@ -1,10 +1,11 @@
-package meister.hackaton.maskserver.thirdparty.image
+package meister.hackaton.maskserver.thirdparty.image.s3
 
 import com.amazonaws.services.s3.AmazonS3Client
 import com.amazonaws.services.s3.model.CannedAccessControlList
 import com.amazonaws.services.s3.model.ObjectMetadata
 import com.amazonaws.services.s3.model.PutObjectRequest
 import meister.hackaton.maskserver.global.exception.FileIOInterruptedException
+import meister.hackaton.maskserver.thirdparty.image.ImageUploader
 import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
 import java.io.IOException
