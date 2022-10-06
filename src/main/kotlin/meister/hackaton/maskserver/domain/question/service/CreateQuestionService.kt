@@ -1,5 +1,6 @@
 package meister.hackaton.maskserver.domain.question.service
 
+import meister.hackaton.maskserver.domain.question.event.QuestionCreationEvent
 import meister.hackaton.maskserver.domain.question.model.Question
 import meister.hackaton.maskserver.domain.question.model.QuestionStatus
 import meister.hackaton.maskserver.domain.question.presentation.dto.CreateQuestionRequest
@@ -14,6 +15,7 @@ import meister.hackaton.maskserver.domain.user.exception.UserNotFoundException
 import meister.hackaton.maskserver.domain.user.repositiory.UserRepository
 import meister.hackaton.maskserver.global.util.SecurityUtil
 import meister.hackaton.maskserver.thirdparty.message.MessageSender
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -24,7 +26,7 @@ class CreateQuestionService(
     private val tagRepository: TagRepository,
     private val questionSkillRepository: QuestionSkillRepository,
     private val securityUtil: SecurityUtil,
-    private val messageSender: MessageSender
+    private val eventPublisher: ApplicationEventPublisher
 ) {
 
     @Transactional
@@ -65,7 +67,8 @@ class CreateQuestionService(
 
         questionSkillRepository.saveAll(questionSkills)
 
-        messageSender.send(user.phoneNumber, "", "${tag.name}에 관한 새로운 질문이 올라왔어요!")
+        val eventUsers = userRepository.findUsersByMajorTag(tag).map { it.phoneNumber }
+        eventPublisher.publishEvent(QuestionCreationEvent(tag.name, user.phoneNumber, eventUsers))
     }
 
 }
