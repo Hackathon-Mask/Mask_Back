@@ -1,13 +1,11 @@
 package meister.hackaton.maskserver.domain.question.repository
 
-import com.querydsl.core.types.OrderSpecifier
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
 import meister.hackaton.maskserver.domain.question.model.QueryType
 import meister.hackaton.maskserver.domain.question.repository.vo.QQuestionVO
 import meister.hackaton.maskserver.domain.question.repository.vo.QuestionVO
 import org.springframework.stereotype.Component
-import java.time.LocalDateTime
 import meister.hackaton.maskserver.domain.question.model.QQuestion.question as questionEntity
 import meister.hackaton.maskserver.domain.tag.model.QTag.tag as tagEntity
 
@@ -35,7 +33,8 @@ class QuestionRepositoryCustomImpl(
                 )
             )
             .from(questionEntity)
-            .leftJoin(questionEntity.majorTag, tagEntity)
+            .innerJoin(questionEntity.majorTag, tagEntity)
+            .on(tagEntity.id.eq(majorTag))
             .where(
                 keywordContains(keyword)
             )
@@ -44,7 +43,7 @@ class QuestionRepositoryCustomImpl(
     }
 
     private fun keywordContains(keyword: String?): BooleanExpression? =
-        if (keyword == null) null else questionEntity.title.like(keyword)
+        if (keyword != null) questionEntity.title.contains(keyword) else null
 
 
 //    private fun sortByDate(type: QueryType): OrderSpecifier<LocalDateTime> {
