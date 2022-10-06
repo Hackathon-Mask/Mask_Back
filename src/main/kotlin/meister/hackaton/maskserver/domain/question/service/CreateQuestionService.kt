@@ -13,6 +13,7 @@ import meister.hackaton.maskserver.domain.tag.repository.TagRepository
 import meister.hackaton.maskserver.domain.user.exception.UserNotFoundException
 import meister.hackaton.maskserver.domain.user.repositiory.UserRepository
 import meister.hackaton.maskserver.global.util.SecurityUtil
+import meister.hackaton.maskserver.thirdparty.message.MessageSender
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -22,7 +23,8 @@ class CreateQuestionService(
     private val userRepository: UserRepository,
     private val tagRepository: TagRepository,
     private val questionSkillRepository: QuestionSkillRepository,
-    private val securityUtil: SecurityUtil
+    private val securityUtil: SecurityUtil,
+    private val messageSender: MessageSender
 ) {
 
     @Transactional
@@ -62,6 +64,8 @@ class CreateQuestionService(
         }
 
         questionSkillRepository.saveAll(questionSkills)
+
+        messageSender.send(user.phoneNumber, "", "${tag.name}에 관한 새로운 질문이 올라왔어요!")
     }
 
 }
