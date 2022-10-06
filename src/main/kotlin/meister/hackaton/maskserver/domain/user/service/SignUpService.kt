@@ -36,6 +36,7 @@ class SignUpService(
             name = request.name,
             email = request.email,
             password = passwordEncoder.encode(request.password),
+            phoneNumber = request.phoneNumber,
             school = request.school,
             type = request.type,
             generation = request.generation,

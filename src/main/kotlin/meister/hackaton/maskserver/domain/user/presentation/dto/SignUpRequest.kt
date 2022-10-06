@@ -17,6 +17,9 @@ data class SignUpRequest(
     val password: String,
 
     @field:NotNull
+    val phoneNumber: String,
+
+    @field:NotNull
     val school: School,
 
     @field:NotNull

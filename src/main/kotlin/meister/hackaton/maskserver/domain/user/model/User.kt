@@ -41,6 +41,10 @@ class User(
     val password: String,
 
     @field:NotNull
+    @Column(name = "phone_number", unique = true)
+    val phoneNumber: String,
+
+    @field:NotNull
     @Column(name = "school", length = 20)
     @Enumerated(EnumType.STRING)
     val school: School,

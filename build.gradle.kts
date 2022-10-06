@@ -38,6 +38,8 @@ dependencies {
 	implementation("com.querydsl:querydsl-jpa:5.0.0")
 	kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
 
+	implementation("net.nurigo:javaSDK:2.2")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 }

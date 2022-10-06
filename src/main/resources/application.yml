@@ -50,7 +50,11 @@ springdoc:
 
 security:
   secret-key: ${SECRET_KEY:asdfasfdasfadsf}
-  access-exp: ${ACCESS_EXP:180}
+  access-exp: ${ACCESS_EXP:99999999}
+
+sms:
+  api-key: ${SMS_API_KEY}
+  api-secret: ${SMS_API_SECRET}
 
 logging:
   level:
