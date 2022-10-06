@@ -8,12 +8,15 @@ import meister.hackaton.maskserver.domain.user.presentation.dto.SearchUserRespon
 import meister.hackaton.maskserver.domain.user.presentation.dto.SignInRequest
 import meister.hackaton.maskserver.domain.user.presentation.dto.SignUpRequest
 import meister.hackaton.maskserver.domain.user.presentation.dto.TokenResponse
+import meister.hackaton.maskserver.domain.user.presentation.dto.UserProfileResponse
 import meister.hackaton.maskserver.domain.user.service.QueryMyMajorTagService
+import meister.hackaton.maskserver.domain.user.service.QueryUserProfileService
 import meister.hackaton.maskserver.domain.user.service.SearchUserService
 import meister.hackaton.maskserver.domain.user.service.SignInService
 import meister.hackaton.maskserver.domain.user.service.SignUpService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -29,7 +32,8 @@ class UserController(
     private val signUpService: SignUpService,
     private val signInService: SignInService,
     private val queryMyMajorTagService: QueryMyMajorTagService,
-    private val searchUserService: SearchUserService
+    private val searchUserService: SearchUserService,
+    private val queryUserProfileService: QueryUserProfileService
 ) {
 
     @Operation(summary = "회원가입")
@@ -58,6 +62,14 @@ class UserController(
         @RequestParam school: School
     ): SearchUserResponse {
         return searchUserService.execute(keyword, school)
+    }
+
+    @Operation(summary = "유저 프로필 조회")
+    @GetMapping("/{user-id}")
+    fun getProfile(
+        @PathVariable("user-id") userId: Long
+    ): UserProfileResponse {
+        return queryUserProfileService.execute(userId)
     }
 
 }
