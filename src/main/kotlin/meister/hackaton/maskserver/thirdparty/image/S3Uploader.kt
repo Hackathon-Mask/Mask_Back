@@ -16,7 +16,7 @@ class S3Uploader(
 ) : ImageUploader {
 
     override fun upload(image: MultipartFile): String {
-        val fileName = awsProperties.bucket + "/" + image.originalFilename
+        val fileName = image.originalFilename
 
         inputS3(image, fileName)
 
@@ -46,7 +46,7 @@ class S3Uploader(
     }
 
     private fun getResource(fileName: String?): String {
-        return awsProperties.url + fileName
+        return amazonS3Client.getResourceUrl(awsProperties.bucket, fileName)
     }
 
 }
